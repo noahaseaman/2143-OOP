@@ -12,4 +12,4 @@
 
 #### Avatar:
 
-<img src="https://images2.imgbox.com/ae/bd/tERTAGTL_o.png" width="75">
+<img src="IMG_0284.jpeg" width="75">
