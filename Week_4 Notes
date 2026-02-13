@@ -1,0 +1,4 @@
+ When overloading ostream, ensure you have proper access to the private vars
+
+When to write a copy constructor?
+    When there's pointers
