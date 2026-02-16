@@ -367,10 +367,15 @@ Most real systems care more about **capability**.
 Answer honestly:
 
 1. Does your `Point2D` *feel* like a built-in type?
+  - Yes. 
 2. What design choice most contributed to that feeling?
+  - Being able to call Point2D like a regular addition/subtraction operator
 3. Which OOP concept currently feels overhyped?
+  - Honestly, I still feel like a child so far. There's so many concepts I've never encountered before. I do not have one- yet. 
 4. Which one feels underrated?
+  - The ability to make constructors so concisely! It was awesome getting to use them in this program after seeing the example in class
 5. What part of this worksheet made you uncomfortable — and why?
+  - Honestly? A lot of it. Like I mentioned above, there were _so_ many new and foreign concepts. I'd really love some smaller, more manageable assignments outside of these big ones to become more familiar with the concepts. It feels like there's a thousand new concepts and I barely recognize them at sight, much less am I capable of implementing them off the top of my head. I know new concepts can take time, so I'm optimistic my opinion will change. 
 
 If nothing made you uncomfortable, you probably didn’t push hard enough.
 
