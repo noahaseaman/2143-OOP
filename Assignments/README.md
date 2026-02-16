@@ -63,15 +63,25 @@ Answer **clearly and concisely**.
 
 1. Compare **array-based** vs **list-based** implementations of stacks and queues:
    - memory layout
+     -  An array is stored in memory with all rows occurring consecutively (a sequence)
+     -  A list's elements can be stored separately anywhere in the memory. Every node points to the next. 
    - resizing behavior
-   - cache friendliness  
+     -  An array cannot be resized once it has been declared
+     -  A list can be resized after declaration
+   - cache friendliness
+     - Arrays are inherently cache friendly due to the efficiency of their layout in memory (consecutive)
+     - Lists are inherently _unfriendly_ due to their scattered nature. 
    (Yes, cache friendliness matters. No, you may not ignore it.)
 
 2. Why is `std::vector` a natural fit for a **stack**, but awkward for a **queue**?
+   -  Stacks "last in first out" works splendidly because it allows access in sequential order without needing to rearrange anything to access the necessary information. 
 
 3. Define the **invariant** for:
-   - a stack  
-   - a queue  
+   - a stack
+     - Most simply, "last one in, first one out."
+   - a queue
+     - The inverse of the above, "first one in, last one out."
+   - Simply a set of rules that must remain true throughout the entire process (althought they can theoretically be violated in the middle so long as it holds true at the end)
 
 > If your invariant takes more than one sentence, it’s not an invariant — it’s a confession.
 
@@ -84,20 +94,24 @@ Answer **clearly and concisely**.
 
 Fill out the table:
 
-| Feature               | Overloading | Overriding |
-| --------------------- | ----------- | ---------- |
-| Resolved at           | ?           | ?          |
-| Requires inheritance  | ?           | ?          |
-| Same function name    | ?           | ?          |
-| Same parameter list   | ?           | ?          |
-| Polymorphism involved | ?           | ?          |
+| Feature               | Overloading | Overriding           |
+| --------------------- | ----------- | ----------           |
+| Resolved at           | Compile     | Runtime (Dynamically)|
+| Requires inheritance  | No          | Yes                  |
+| Same function name    | Yes         | Yes                  |
+| Same parameter list   | No          | Yes                  |
+| Polymorphism involved | Yes         | Yes                  |
 
 Then answer:
 
 1. Why is **overloading** a *compile-time convenience*?
+  -  The resolution between two methods with different signatures cannot change over time
 2. Why is **overriding** a *runtime contract*?
+  - There is no way to determine the concrete typings or the implementation of certain methods otherwise
 3. Why do beginners confuse the two?
+  - Honestly, I imagine it's primarily the similarity in name. If we're getting more specific, the compiler cannot guess and the programmer must be clear in a way a beginner might not know how to be.
 4. Why is that confusion dangerous?
+  - I wouldn't call it "dangerous," but it can certainly cause issues with Overriding redefining the base class in it's derived class with the same signature. 
 
 > Hint: The compiler is not your therapist. It will not guess your intent.
 
@@ -124,9 +138,13 @@ public:
 Answer:
 
 1. Why **must** this constructor use an initialization list?
+  - The usage of the const int **id**
 2. What happens if you try to assign `id` inside the constructor body?
+  - An error would occur because **id** was already created within said constructor
 3. Write the correct constructor.
+  - Widget(const int id, std::string name): ID(id) {};
 4. Name **one other situation** where initialization lists are required (research-lite).
+  - If there is not a default constructor.
 
 > Saying “because the compiler told me to” is not an explanation.
 
@@ -137,9 +155,13 @@ Answer:
 Research + reasoning required.
 
 1. When is the **copy constructor** invoked?
+  - Creating a default copy constructor, a new object from an existing one
 2. When is the **assignment operator** invoked?
+  - Called when a pre-existing object is assigned a new value from an existing object
 3. Why do both exist?
+  - To assign values to whatever you need them to (in their own specific ways)
 4. What subtle bugs appear if you confuse them?
+  - Memory leaks, overwriting uninitialized memory, and any manner of undefined behavior
 
 > “They both copy stuff” earns partial credit and a sigh.
 
@@ -153,9 +175,13 @@ Research + reasoning required.
 Answer:
 
 1. What is the **only** language-level difference between `struct` and `class`?
-2. Why does C++ even allow both?
-3. When does choosing `struct` communicate intent *better* than `class`?
-4. Why does intent matter more than syntax in large systems?
+  - Everything inside a class is private everything inside a struct is public (all by default)
+3. Why does C++ even allow both?
+  - Compatibility with the wider C language
+4. When does choosing `struct` communicate intent *better* than `class`?
+  - For the sake of permissions
+5. Why does intent matter more than syntax in large systems?
+  - The purpose behind the code and the choices made thereafter, aka articulating what you want more than anything else. It helps define the purpose more clearly at the human level
 
 ---
 
@@ -170,10 +196,13 @@ Research and explain:
    - `.`  
    - `::`  
    - `sizeof`
+  
+   - In my personal opinion, it boils down to their closeness to the basics of the language. In theory, you probably could figure out a method to overload these but it would create all sorts of questions and problems when it comes to accessing the members of anything. Pointers would need to be used but they might have ALSO been redefined and could cause more problems.
 
 2. Why should `operator+` **not** mutate the left-hand operand?
+  - + is intended to create new values, not modify old ones
 3. Why is `operator<<` almost never a member function?
-
+  - It has to do with left side of the operation being devoted to member functions
 > If your answer is “because that’s how everyone does it,” dig deeper.
 
 ---
@@ -189,9 +218,13 @@ Point operator+(const Point& rhs) const;
 Answer clearly:
 
 1. Which object owns this function?
-2. What does `rhs` represent?
-3. How can this function access `rhs.x` if `x` is private?
-4. What does this tell you about **class-level vs object-level access**?
+  - Point
+3. What does `rhs` represent?
+  - Right-hand side
+4. How can this function access `rhs.x` if `x` is private?
+  - Assuming Point operator+ is inside the Point class, then it can simply access the necessary variable
+5. What does this tell you about **class-level vs object-level access**?
+  - Class-level access pertains to the entire class while object-level is contained to the instance of the object. It essentially means object-level instances are protecting object states. 
 
 > This question exists specifically to break incorrect mental models.
 
@@ -204,9 +237,13 @@ Answer clearly:
 Answer:
 
 1. What does the `friend` keyword actually do?
-2. Why is `operator<<` commonly declared as a friend?
-3. Why is excessive use of `friend` a red flag?
-4. Give **one legitimate use case** and **one illegitimate one**.
+  - It gives a function or a class access to private members
+3. Why is `operator<<` commonly declared as a friend?
+  - Giving access to o/istream, aka providing access to these non-extendable libraries
+4. Why is excessive use of `friend` a red flag?
+  - Because it breaks encapsulation.
+5. Give **one legitimate use case** and **one illegitimate one**.
+  - As mentioned above, using it with o/iostream is a proper use while making an entire class a friend could be a problem and, even if not, is bad practice.
 
 > “Because it wouldn’t compile otherwise” is not a justification — it’s a symptom.
 
