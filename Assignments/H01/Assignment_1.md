@@ -22,7 +22,7 @@ coverage:
 # 🧠 OOP Worksheet & Study Guide  
 ### *Making Your Own Types Feel Like the Language Meant Them to Exist*
 
-### Due: 16 Feb 2026 by class time. 
+### Due: 23 Feb 2026 by class time. 
 
 > If this feels long, good.  
 > If it feels unfinished, also good.  
