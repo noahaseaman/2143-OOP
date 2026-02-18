@@ -100,7 +100,7 @@ Fill out the table:
 | Requires inheritance  | No          | Yes                  |
 | Same function name    | Yes         | Yes                  |
 | Same parameter list   | No          | Yes                  |
-| Polymorphism involved | Yes         | Yes                  |
+| Polymorphism involved | Static      | Dynamic              |
 
 Then answer:
 
