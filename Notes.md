@@ -30,3 +30,8 @@ constructor
 destructor
 deep copy
 shallow copy
+
+
+**Word I don't know**
+
+ -Pipeline
