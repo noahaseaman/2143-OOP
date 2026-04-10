@@ -40,3 +40,4 @@ shallow copy
  -Stub
  -Pure virtual
  -Virtual
+ -Pragma
