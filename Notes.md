@@ -38,3 +38,5 @@ shallow copy
  -Enumerated type
  -Abstract Class
  -Stub
+ -Pure virtual
+ -Virtual
