@@ -41,3 +41,12 @@ shallow copy
  -Pure virtual
  -Virtual
  -Pragma
+ -rbegin 
+ -typedef
+ -auto
+ -rend()
+ -typedef
+ -resize
+ -with open(filename,"w") as f   <----- THis is Python
+ -lambda
+ -
